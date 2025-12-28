@@ -1,0 +1,24 @@
+2025-12-28 18:38:35,077 | INFO | Starting analyze handler
+2025-12-28 18:38:35,123 | INFO | Starting analyzer agent
+2025-12-28 18:38:36,589 | INFO | Worker pool initialized with 10 max workers
+2025-12-28 18:38:36,589 | INFO | Running Structure Analyzer
+2025-12-28 18:38:36,595 | INFO | Running Dependency Analyzer
+2025-12-28 18:38:36,596 | INFO | Running Data Flow Analyzer
+2025-12-28 18:38:36,596 | INFO | Running Request Flow Analyzer
+2025-12-28 18:38:36,597 | INFO | Running API Analyzer
+2025-12-28 18:39:59,899 | INFO | API Analyzer run completed  | Data: {"total_tokens":2179,"request_tokens":1747,"response_tokens":432,"total_time":"1m 23s","total_messages":2}
+2025-12-28 18:39:59,900 | INFO | API Analyzer result saved to .ai/docs/api_analysis.md
+2025-12-28 18:41:21,242 | INFO | Request Flow Analyzer run completed  | Data: {"total_tokens":2077,"request_tokens":1547,"response_tokens":530,"total_time":"2m 44s","total_messages":2}
+2025-12-28 18:41:21,245 | INFO | Request Flow Analyzer result saved to .ai/docs/request_flow_analysis.md
+2025-12-28 18:43:51,821 | INFO | Structure Analyzer run completed  | Data: {"total_tokens":2589,"request_tokens":1635,"response_tokens":954,"total_time":"5m 15s","total_messages":2}
+2025-12-28 18:43:51,823 | INFO | Structure Analyzer result saved to .ai/docs/structure_analysis.md
+2025-12-28 18:45:36,749 | INFO | Data Flow Analyzer run completed  | Data: {"total_tokens":2081,"request_tokens":1532,"response_tokens":549,"total_time":"7m 0s","total_messages":2}
+2025-12-28 18:45:36,750 | INFO | Data Flow Analyzer result saved to .ai/docs/data_flow_analysis.md
+2025-12-28 18:47:34,856 | INFO | Dependency Analyzer run completed  | Data: {"total_tokens":2477,"request_tokens":1518,"response_tokens":959,"total_time":"8m 58s","total_messages":2}
+2025-12-28 18:47:34,859 | INFO | Dependency Analyzer result saved to .ai/docs/dependency_analysis.md
+2025-12-28 18:47:34,861 | INFO | Agent Structure Analyzer completed successfully
+2025-12-28 18:47:34,861 | INFO | Agent Dependency Analyzer completed successfully
+2025-12-28 18:47:34,861 | INFO | Agent Data Flow Analyzer completed successfully
+2025-12-28 18:47:34,861 | INFO | Agent Request Flow Analyzer completed successfully
+2025-12-28 18:47:34,861 | INFO | Agent API Analyzer completed successfully
+2025-12-28 18:47:34,861 | INFO | All 5 analysis files generated successfully

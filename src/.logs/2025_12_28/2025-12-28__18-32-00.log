@@ -1,0 +1,364 @@
+2025-12-28 18:32:00,728 | INFO | Starting analyze handler
+2025-12-28 18:32:00,775 | INFO | Starting analyzer agent
+2025-12-28 18:32:02,448 | INFO | Worker pool initialized with 10 max workers
+2025-12-28 18:32:02,448 | INFO | Running Structure Analyzer
+2025-12-28 18:32:02,453 | INFO | Running Dependency Analyzer
+2025-12-28 18:32:02,454 | INFO | Running Data Flow Analyzer
+2025-12-28 18:32:02,455 | INFO | Running Request Flow Analyzer
+2025-12-28 18:32:02,456 | INFO | Running API Analyzer
+2025-12-28 18:32:02,719 | INFO | Error running agent: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 520, in _completions_create
+    return await self.client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1797, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1597, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/src/agents/analyzer.py", line 157, in _run_agent
+    result: AgentRunResult = await agent.run(
+                             ^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/abstract.py", line 225, in run
+    async with self.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/__init__.py", line 649, in iter
+    async with graph.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 270, in iter
+    async with GraphRun[StateT, DepsT, OutputT](
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 423, in __aexit__
+    await self._async_exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 726, in __aexit__
+    cb_suppress = cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 978, in _unwrap_exception_groups
+    raise exception
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 750, in _run_tracked_task
+    result = await self._run_task(t_)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 779, in _run_task
+    output = await node.call(step_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/step.py", line 253, in _call_node
+    return await node.run(GraphRunContext(state=ctx.state, deps=ctx.deps))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 431, in run
+    return await self._make_request(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 473, in _make_request
+    model_response = await ctx.deps.model.request(message_history, model_settings, model_request_parameters)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/instrumented.py", line 372, in request
+    response = await self.wrapped.request(messages, model_settings, model_request_parameters)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 438, in request
+    response = await self._completions_create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 550, in _completions_create
+    raise ModelHTTPError(status_code=status_code, model_name=self.model_name, body=e.body) from e
+pydantic_ai.exceptions.ModelHTTPError: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+2025-12-28 18:32:02,725 | INFO | Error running agent: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 520, in _completions_create
+    return await self.client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1797, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1597, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/src/agents/analyzer.py", line 157, in _run_agent
+    result: AgentRunResult = await agent.run(
+                             ^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/abstract.py", line 225, in run
+    async with self.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/__init__.py", line 649, in iter
+    async with graph.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 270, in iter
+    async with GraphRun[StateT, DepsT, OutputT](
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 423, in __aexit__
+    await self._async_exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 726, in __aexit__
+    cb_suppress = cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 978, in _unwrap_exception_groups
+    raise exception
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 750, in _run_tracked_task
+    result = await self._run_task(t_)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 779, in _run_task
+    output = await node.call(step_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/step.py", line 253, in _call_node
+    return await node.run(GraphRunContext(state=ctx.state, deps=ctx.deps))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 431, in run
+    return await self._make_request(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 473, in _make_request
+    model_response = await ctx.deps.model.request(message_history, model_settings, model_request_parameters)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/instrumented.py", line 372, in request
+    response = await self.wrapped.request(messages, model_settings, model_request_parameters)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 438, in request
+    response = await self._completions_create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 550, in _completions_create
+    raise ModelHTTPError(status_code=status_code, model_name=self.model_name, body=e.body) from e
+pydantic_ai.exceptions.ModelHTTPError: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+2025-12-28 18:32:02,726 | INFO | Error running agent: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 520, in _completions_create
+    return await self.client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1797, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1597, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/src/agents/analyzer.py", line 157, in _run_agent
+    result: AgentRunResult = await agent.run(
+                             ^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/abstract.py", line 225, in run
+    async with self.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/__init__.py", line 649, in iter
+    async with graph.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 270, in iter
+    async with GraphRun[StateT, DepsT, OutputT](
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 423, in __aexit__
+    await self._async_exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 726, in __aexit__
+    cb_suppress = cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 978, in _unwrap_exception_groups
+    raise exception
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 750, in _run_tracked_task
+    result = await self._run_task(t_)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 779, in _run_task
+    output = await node.call(step_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/step.py", line 253, in _call_node
+    return await node.run(GraphRunContext(state=ctx.state, deps=ctx.deps))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 431, in run
+    return await self._make_request(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 473, in _make_request
+    model_response = await ctx.deps.model.request(message_history, model_settings, model_request_parameters)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/instrumented.py", line 372, in request
+    response = await self.wrapped.request(messages, model_settings, model_request_parameters)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 438, in request
+    response = await self._completions_create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 550, in _completions_create
+    raise ModelHTTPError(status_code=status_code, model_name=self.model_name, body=e.body) from e
+pydantic_ai.exceptions.ModelHTTPError: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+2025-12-28 18:32:02,728 | INFO | Error running agent: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 520, in _completions_create
+    return await self.client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1797, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1597, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/src/agents/analyzer.py", line 157, in _run_agent
+    result: AgentRunResult = await agent.run(
+                             ^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/abstract.py", line 225, in run
+    async with self.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/__init__.py", line 649, in iter
+    async with graph.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 270, in iter
+    async with GraphRun[StateT, DepsT, OutputT](
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 423, in __aexit__
+    await self._async_exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 726, in __aexit__
+    cb_suppress = cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 978, in _unwrap_exception_groups
+    raise exception
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 750, in _run_tracked_task
+    result = await self._run_task(t_)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 779, in _run_task
+    output = await node.call(step_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/step.py", line 253, in _call_node
+    return await node.run(GraphRunContext(state=ctx.state, deps=ctx.deps))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 431, in run
+    return await self._make_request(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 473, in _make_request
+    model_response = await ctx.deps.model.request(message_history, model_settings, model_request_parameters)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/instrumented.py", line 372, in request
+    response = await self.wrapped.request(messages, model_settings, model_request_parameters)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 438, in request
+    response = await self._completions_create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 550, in _completions_create
+    raise ModelHTTPError(status_code=status_code, model_name=self.model_name, body=e.body) from e
+pydantic_ai.exceptions.ModelHTTPError: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+2025-12-28 18:32:02,731 | INFO | Error running agent: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 520, in _completions_create
+    return await self.client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1797, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1597, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/src/agents/analyzer.py", line 157, in _run_agent
+    result: AgentRunResult = await agent.run(
+                             ^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/abstract.py", line 225, in run
+    async with self.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/agent/__init__.py", line 649, in iter
+    async with graph.iter(
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 270, in iter
+    async with GraphRun[StateT, DepsT, OutputT](
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 423, in __aexit__
+    await self._async_exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 726, in __aexit__
+    cb_suppress = cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 978, in _unwrap_exception_groups
+    raise exception
+  File "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 277, in __step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 750, in _run_tracked_task
+    result = await self._run_task(t_)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/graph.py", line 779, in _run_task
+    output = await node.call(step_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_graph/beta/step.py", line 253, in _call_node
+    return await node.run(GraphRunContext(state=ctx.state, deps=ctx.deps))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 431, in run
+    return await self._make_request(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/_agent_graph.py", line 473, in _make_request
+    model_response = await ctx.deps.model.request(message_history, model_settings, model_request_parameters)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/instrumented.py", line 372, in request
+    response = await self.wrapped.request(messages, model_settings, model_request_parameters)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 438, in request
+    response = await self._completions_create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/Volume A/project github/Untitled/ai-doc-gen/.venv/lib/python3.11/site-packages/pydantic_ai/models/openai.py", line 550, in _completions_create
+    raise ModelHTTPError(status_code=status_code, model_name=self.model_name, body=e.body) from e
+pydantic_ai.exceptions.ModelHTTPError: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+2025-12-28 18:32:02,732 | ERROR | Agent Structure Analyzer failed: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+NoneType: None
+2025-12-28 18:32:02,733 | ERROR | Agent Dependency Analyzer failed: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+NoneType: None
+2025-12-28 18:32:02,733 | ERROR | Agent Data Flow Analyzer failed: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+NoneType: None
+2025-12-28 18:32:02,733 | ERROR | Agent Request Flow Analyzer failed: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+NoneType: None
+2025-12-28 18:32:02,733 | ERROR | Agent API Analyzer failed: status_code: 400, model_name: gemma2:2b, body: {'message': 'registry.ollama.ai/library/gemma2:2b does not support tools', 'type': 'api_error', 'param': None, 'code': None}
+NoneType: None
+2025-12-28 18:32:02,733 | INFO | All 5 analysis files generated successfully
